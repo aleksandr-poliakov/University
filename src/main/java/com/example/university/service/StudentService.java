@@ -30,7 +30,8 @@ public class StudentService {
 
     public Student saveStudent(InsertStudentDTO insertStudentDTO) {
         var student = modelMapper.map(insertStudentDTO, Student.class);
-        return studentRepository.save(student);
+
+        return studentRepository.saveAndFlush(student);
     }
 
     public Optional<Student> getStudentById(UUID studentId) {
