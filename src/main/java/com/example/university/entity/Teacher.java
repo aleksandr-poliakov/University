@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,25 +13,18 @@ import java.util.UUID;
  * @author aleksandr on 23.11.2023
  * @projectName University
  */
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "student_tbl")
-public class Student {
-    /*
-List of subjects studied
-Grades for subjects
-     */
+@Table(name = "teacher_tbl")
+public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
-    @Column(name ="birth_date")
-    private Date birthdate;
+    @Column(name = "teacher_name")
+    private String name;
     @OneToMany
     @JsonManagedReference
     private List<Subject> subjects;

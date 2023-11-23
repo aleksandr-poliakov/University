@@ -1,8 +1,10 @@
-package com.example.university.dto;
+package com.example.university.dto.student;
 
+import com.example.university.dto.subject.SubjectDTO;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -15,4 +17,5 @@ public class StudentDTO {
     private String firstName;
     private String lastName;
     private Date birthdate;
+    private List<SubjectDTO> subjects;
 }

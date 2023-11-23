@@ -1,12 +1,15 @@
 package com.example.university.service;
 
-import com.example.university.dto.InsertStudentDTO;
-import com.example.university.dto.StudentDTO;
+import com.example.university.dto.student.InsertStudentDTO;
+import com.example.university.dto.student.StudentDTO;
 import com.example.university.entity.Student;
 import com.example.university.repository.StudentRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * @author aleksandr on 23.11.2023
@@ -28,6 +31,10 @@ public class StudentService {
     public Student saveStudent(InsertStudentDTO insertStudentDTO) {
         var student = modelMapper.map(insertStudentDTO, Student.class);
         return studentRepository.save(student);
+    }
+
+    public Optional<Student> getStudentById(UUID studentId) {
+        return studentRepository.findById(studentId);
     }
 
     public StudentDTO mapToDTO(Student student) {
