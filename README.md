@@ -1,6 +1,6 @@
 # University (backend)
 
-This Universtiy application is a web-based platform that allows users to get payment data from json
+This Universtiy application is a web-based platform based on student and teacher activity
 
 ## Technologies Used
 
