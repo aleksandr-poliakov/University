@@ -20,6 +20,10 @@ import java.util.UUID;
 public class StudentController {
     private final StudentService studentService;
 
+    private void test() {
+        System.out.println("test");
+    }
+
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
