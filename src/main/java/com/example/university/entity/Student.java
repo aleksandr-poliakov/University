@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -21,10 +20,7 @@ import java.util.UUID;
 @Data
 @Table(name = "student_tbl")
 public class Student {
-    /*
-List of subjects studied
-Grades for subjects
-     */
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -37,13 +33,4 @@ Grades for subjects
     @OneToMany
     @JsonManagedReference
     private List<Subject> subjects;
-
-    // Method to add a subject to the student
-    public void addSubject(Subject subject) {
-        if (subjects == null) {
-            subjects = new ArrayList<>();
-        }
-        subjects.add(subject);
-        subject.setStudent(this); // Set the reference to the owning student
-    }
 }

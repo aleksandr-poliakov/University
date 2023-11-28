@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,12 +28,4 @@ public class Teacher {
     @OneToMany
     @JsonManagedReference
     private List<Subject> subjects;
-
-    public void addSubject(Subject subject) {
-        if (subjects == null) {
-            subjects = new ArrayList<>();
-        }
-        subjects.add(subject);
-        subject.setTeacher(this); // Set the reference to the owning teacher
-    }
 }

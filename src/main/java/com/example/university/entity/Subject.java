@@ -34,17 +34,3 @@ public class Subject {
     @JsonBackReference
     private Teacher teacher;
 }
-/*
-
-teacher -> subject
-
-list of subjects
-
-mathematics id -> 8397423
-
-teacher should be declared math id of subject
-students
-
-id student id subject -> change note.
-
- */
