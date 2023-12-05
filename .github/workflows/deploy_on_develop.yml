@@ -50,14 +50,14 @@ jobs:
           docker tag university/uni-be $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
 
-      - name: copy file imo-dev.yaml
+      - name: copy file university-dev.yaml
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          source: "imo-dev.yaml"
+          source: "university-dev.yaml"
           target: "/root"
 
       - name: set env and deploy
@@ -76,4 +76,4 @@ jobs:
             echo "IMAGE_TAG=$VERSION" >> ENV_FILE_RE
             echo "APP_HOST=$APP_HOST" >> ENV_FILE_RE
             export $(xargs < ENV_FILE_RE)
-            docker stack deploy --with-registry-auth -c imo-dev.yaml imo-dev
+            docker stack deploy --with-registry-auth -c university-dev.yaml university-dev

@@ -46,7 +46,7 @@ services:
   db:
     image: postgres:13
     networks:
-      - imo_networks
+      - uni_networks
     environment:
       - POSTGRES_DB=university
       - POSTGRES_USER=postgres
