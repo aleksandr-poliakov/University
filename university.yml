@@ -18,11 +18,11 @@ services:
     networks:
       - uni_networks
     environment:
-      - DB_URL=jdbc:postgresql://localhost:32770/university
+      - DB_URL=jdbc:postgresql://db:32770/university
       - DB_USER=postgres
       - DB_PASS=postgres
 
-      - PORT=32770
+      - PORT=8080
       - PROFILE=default
       - CONTEXT_PATH=/uni
       - APP_URL=http://localhost:32770
@@ -35,7 +35,7 @@ services:
     networks:
       - imo_networks
     environment:
-      - POSTGRES_DB=test
+      - POSTGRES_DB=university
       - POSTGRES_USER=test
       - POSTGRES_PASSWORD=test
     volumes:
