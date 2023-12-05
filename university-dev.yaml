@@ -1,0 +1,59 @@
+version: '3'
+
+networks:
+  uni_networks:
+    external: false
+  traefik_public:
+    external: true
+
+volumes:
+  uni:
+    driver: local
+  postgres_db:
+    driver: local
+
+services:
+  uni:
+    image: "ghcr.io/university/uni-be:${IMAGE_TAG}"
+    networks:
+      - uni_networks
+      - traefik_public
+
+    environment:
+      - DB_URL=jdbc:postgresql://db:5432/test
+      - DB_USER=test
+      - DB_PASS=test
+
+      - PORT=8080
+      - PROFILE=default
+      - CONTEXT_PATH=
+      - APP_URL=https://staging.university.ro
+      - BE_URL=https://test-api.university.ro
+      - REGISTER_CONFIRM_EMAIL=TRUE
+
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik_public"
+        - "traefik.http.routers.imo-bc-dev.rule=Host(`test-${APP_HOST}`)"
+        - "traefik.http.services.imo-bc-dev.loadbalancer.server.port=8080"
+        - "traefik.http.routers.imo-bc-dev.tls=true"
+        - "traefik.http.routers.imo-bc-dev.tls.certresolver=hetzner"
+      placement:
+        constraints:
+          - node.labels.worker == worker1
+
+  db:
+    image: postgres:13
+    networks:
+      - imo_networks
+    environment:
+      - POSTGRES_DB=test
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+    volumes:
+      - postgres_db:/var/lib/postgresql/data
+    deploy:
+      placement:
+        constraints:
+          - node.labels.worker == worker1
