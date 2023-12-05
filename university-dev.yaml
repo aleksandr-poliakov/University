@@ -14,23 +14,20 @@ volumes:
 
 services:
   uni:
-    image: "ghcr.io/university/uni-be:${IMAGE_TAG}"
+    image: "ghcr.io/university/uni-be"
     networks:
       - uni_networks
       - traefik_public
-
     environment:
       - DB_URL=jdbc:postgresql://db:32770/university
       - DB_USER=postgres
       - DB_PASS=postgres
-
       - PORT=8080
       - PROFILE=default
       - CONTEXT_PATH=
       - APP_URL=https://staging.university.ro
       - BE_URL=https://test-api.university.ro
       - REGISTER_CONFIRM_EMAIL=TRUE
-
     deploy:
       labels:
         - "traefik.enable=true"
