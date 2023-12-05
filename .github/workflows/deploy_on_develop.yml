@@ -49,12 +49,12 @@ jobs:
 
       - name: Docker create and push image
         run: |
-          IMAGE_ID=ghcr.io/${{ secrets.OWNER }}/university/uni-be
+          DOCKER_IMAGE=ghcr.io/${{ secrets.OWNER }}/university/uni-be
           VERSION=dev-${GITHUB_RUN_NUMBER}
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-          docker build -t $IMAGE_ID .
-          docker tag $IMAGE_ID $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+          DOCKER_IMAGE=$(echo $DOCKER_IMAGE | tr '[A-Z]' '[a-z]')
+          docker build -t $DOCKER_IMAGE .
+          docker tag $DOCKER_IMAGE $DOCKER_IMAGE:$VERSION
+          docker push $DOCKER_IMAGE:$VERSION
 
       - name: Copy university-dev.yaml
         uses: appleboy/scp-action@master
