@@ -56,31 +56,10 @@ jobs:
           docker tag $DOCKER_IMAGE $DOCKER_IMAGE:$VERSION
           docker push $DOCKER_IMAGE:$VERSION
 
-      - name: Copy university-dev.yaml
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          source: "university-dev.yaml"
-          target: "/root"
-
       - name: Set env and deploy
-        uses: appleboy/ssh-action@master
-        env:
-          APP_HOST: ${{ secrets.APP_HOST }}
-          GITHUB_RUN_NUMBER: ${{ github.run_number }}
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          envs: APP_HOST,GITHUB_RUN_NUMBER
-          script: |
-            VERSION=dev-${GITHUB_RUN_NUMBER}
-            echo "" > ENV_FILE_RE
-            echo "IMAGE_TAG=$VERSION" >> ENV_FILE_RE
-            echo "APP_HOST=$APP_HOST" >> ENV_FILE_RE
-            export $(xargs < ENV_FILE_RE)
-            docker stack deploy --with-registry-auth -c university-dev.yaml university-dev
+        run: |
+          VERSION=dev-${GITHUB_RUN_NUMBER}
+          echo "" > ENV_FILE_RE
+          echo "IMAGE_TAG=$VERSION" >> ENV_FILE_RE
+          export $(xargs < ENV_FILE_RE)
+          # Add any other deployment-related steps here
