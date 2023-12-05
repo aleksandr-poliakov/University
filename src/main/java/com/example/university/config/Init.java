@@ -34,7 +34,7 @@ public class Init implements ApplicationRunner {
         insertSubjectDTOS.add(new InsertSubjectDTO(null, "Geography", "Field of geography"));
         insertSubjectDTOS.add(new InsertSubjectDTO(null, "English", "Field of english"));
         insertSubjectDTOS.add(new InsertSubjectDTO(null, "German", "Field of german"));
-        //insertSubjectDTOS.add(new InsertSubjectDTO(null, "Spanish", "Field of spanish"));
+        insertSubjectDTOS.add(new InsertSubjectDTO(null, "Spanish", "Field of spanish"));
 
         insertSubjectDTOS.forEach(subjectService::saveSubject);
     }
