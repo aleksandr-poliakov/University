@@ -14,7 +14,7 @@ volumes:
 
 services:
   uni:
-    image: "ghcr.io/university/uni-be"
+    image: "ghcr.io/aleksandr-poliakov/university/uni-be"
     networks:
       - uni_networks
       - traefik_public
