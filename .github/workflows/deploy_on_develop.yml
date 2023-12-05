@@ -59,7 +59,6 @@ jobs:
       - name: Copy university-dev.yaml
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
@@ -72,7 +71,6 @@ jobs:
           APP_HOST: ${{ secrets.APP_HOST }}
           GITHUB_RUN_NUMBER: ${{ github.run_number }}
         with:
-          host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
