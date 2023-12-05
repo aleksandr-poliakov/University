@@ -29,7 +29,6 @@ public class StudentController {
     @Operation(summary = "Posibility to add student to database")
 
     public StudentDTO save(@Valid @RequestBody InsertStudentDTO insertStudentDTO) {
-        var student = new StudentDTO();
         return studentService.mapToDTO(studentService.saveStudent(insertStudentDTO));
     }
 
