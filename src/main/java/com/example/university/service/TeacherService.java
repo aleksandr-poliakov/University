@@ -17,8 +17,8 @@ import java.util.UUID;
  */
 @Service
 public class TeacherService {
-    private TeacherRepository teacherRepository;
-    private ModelMapper modelMapper;
+    private final TeacherRepository teacherRepository;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public TeacherService(TeacherRepository teacherRepository, ModelMapper modelMapper) {

@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SubjectService {
 
-    private SubjectRepository subjectRepository;
-    private ModelMapper modelMapper;
+    private final SubjectRepository subjectRepository;
+    private final ModelMapper modelMapper;
 
     @Autowired
     public SubjectService(SubjectRepository subjectRepository, ModelMapper modelMapper) {
