@@ -45,7 +45,7 @@ jobs:
           mvn package spring-boot:build-image -Dspring-boot.build-image.imageName=university/uni-be
 
       - name: Log into registry
-        run: echo "${{ secrets.PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.GIT_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Docker create and push image
         run: |
